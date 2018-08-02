@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="toRegistAction" class="com.htgy.actions.ToRegistAction"></bean>
-    <bean id="toLoginAction" class="com.htgy.actions.ToLoginAction"></bean>
+    <!--<bean id="toRegistAction" class="com.htgy.actions.ToRegistAction"></bean>-->
+    <!--<bean id="toLoginAction" class="com.htgy.actions.ToLoginAction"></bean>-->
 
-    <bean id="loginAction"
-          class="com.htgy.actions.LoginAction">
-        <property name="commandClass">
-            <value>com.htgy.loginform.LoginForm</value>
-        </property>
-        <!-- 指定失败要返回的页面 --> <!-- 需修改 -->
-        <property name="lFailview">
-            <value>loginFail</value>
-        </property>
-        <!-- 指定成功要返回的页面 -->
-        <property name="lSuccessView">
-            <value>loginSuccess</value>
-        </property>
-    </bean>
+    <!--<bean id="loginAction"-->
+          <!--class="com.htgy.actions.LoginAction">-->
+        <!--<property name="commandClass">-->
+            <!--<value>com.htgy.loginform.LoginForm</value>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 指定失败要返回的页面 &ndash;&gt; &lt;!&ndash; 需修改 &ndash;&gt;-->
+        <!--<property name="lFailview">-->
+            <!--<value>loginFail</value>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 指定成功要返回的页面 &ndash;&gt;-->
+        <!--<property name="lSuccessView">-->
+            <!--<value>loginSuccess</value>-->
+        <!--</property>-->
+    <!--</bean>-->
 
-    <bean id="registAction"
-          class="com.htgy.actions.RegistAction">
-        <property name="commandClass">
-            <value>com.htgy.registform.RegistForm</value>
-        </property>
-        <!-- 注册成功返回的页面 -->
-        <property name="rSuccessView">
-            <value>registSuccess</value>
-        </property>
-        <!-- 取消注册返回的页面 -->
-        <property name="rFailView">
-            <value>registFail</value>
-        </property>
-    </bean>
+    <!--<bean id="registAction"-->
+          <!--class="com.htgy.actions.RegistAction">-->
+        <!--<property name="commandClass">-->
+            <!--<value>com.htgy.registform.RegistForm</value>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 注册成功返回的页面 &ndash;&gt;-->
+        <!--<property name="rSuccessView">-->
+            <!--<value>registSuccess</value>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 取消注册返回的页面 &ndash;&gt;-->
+        <!--<property name="rFailView">-->
+            <!--<value>registFail</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="view" class="com.htgy.view.View"
+          p:loginSucess="loginSucess"
+          p:registSuccess="registSuccess"
+          p:login="login"
+          p:regist="regist"
+          p:loginFail="loginFail"
+          p:registFail="registFail"/>
+
+
 </beans>

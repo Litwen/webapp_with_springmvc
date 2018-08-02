@@ -3,7 +3,6 @@ package com.htgy.actions;
 import com.htgy.registform.RegistForm;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RegistAction extends SimpleFormController {
+public class RegistAction {
     private String rFailView;
     private String rSuccessView;
 
