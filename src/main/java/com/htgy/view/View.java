@@ -3,7 +3,7 @@ package com.htgy.view;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class View {
     private String loginSucess;
     private String registSuccess;

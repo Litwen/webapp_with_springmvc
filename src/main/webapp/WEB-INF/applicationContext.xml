@@ -40,12 +40,34 @@
     <!--</bean>-->
 
     <bean id="view" class="com.htgy.view.View"
-          p:loginSucess="loginSucess"
+          p:loginSucess="loginSuccess"
           p:registSuccess="registSuccess"
           p:login="login"
           p:regist="regist"
           p:loginFail="loginFail"
           p:registFail="registFail"/>
 
+    <!--<bean id="db-config"-->
+          <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:db-config.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean id="dataSource"
+            class="org.apache.commons.dbcp.BasicDataSource"
+            destroy-method="close"
+    >
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1/springmvc?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="199709"/>
+    </bean>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate"
+          abstract="false" lazy-init="false" autowire="default"
+          p:dataSource-ref="dataSource"/>
 
 </beans>
