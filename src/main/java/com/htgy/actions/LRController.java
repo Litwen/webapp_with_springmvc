@@ -2,6 +2,7 @@ package com.htgy.actions;
 
 
 import com.htgy.form.UserForm;
+import com.htgy.registform.RegistForm;
 import com.htgy.service.impl.ServiceImpl;
 import com.htgy.view.View;
 import org.springframework.stereotype.Controller;
@@ -32,19 +33,39 @@ public class LRController {
     public ModelAndView doLogin(UserForm userForm){
         String account = userForm.getAccount();
         String password = userForm.getPassword();
-        System.out.println(account+"    "+password+"    "+view.getLogin());
         if("".equals(account)||"".equals(password)){
-            System.out.println(view.getLogin());
-            return new ModelAndView(view.getLogin(), sI.dealNull());
+            return new ModelAndView(view.getLoginFail(), sI.dealNull());
         }else if (sI.doquery(account, password)){
-            System.out.println(view.getLoginSucess());
-            return new ModelAndView(view.getLoginSucess(), sI.loginSuccess());
+            return new ModelAndView(view.getLoginSucess(), sI.getLoginUsername(account));
         }else{
-            System.out.println(view.getLoginSucess());
             return new ModelAndView(view.getLoginFail(), sI.error());
         }
     }
 
+    @RequestMapping("/doRegist")
+    public ModelAndView doRegist(RegistForm registForm){
+        String username = registForm.getUsername();
+        String account = registForm.getAccount();
+        String passFirst = registForm.getPassFirst();
+        String passSecond = registForm.getPassSecond();
+        System.out.println(username);
+        if ("".equals(username)||"".equals(account)||"".equals(passFirst)||"".equals(passSecond)){
+            return new ModelAndView(view.getRegistFail(), sI.dealRegistNull());
+        }else if(sI.checkExist(account)){
+            return new ModelAndView(view.getRegistFail(), sI.registError());
+        }else if(sI.checkExist(account) != true && !passFirst.equals(passSecond)){
+            return new ModelAndView(view.getRegistFail(), sI.registPassWordError());
+        }else{
+            try{
+                sI.insert(username, account, passFirst);
+                return new ModelAndView(view.getRegistSuccess(), sI.registSuccess());
+            }catch (Exception e){
+                return new ModelAndView(view.getRegistFail(), sI.unkonwError());
+            }
+        }
+
+
+    }
 
 
 }

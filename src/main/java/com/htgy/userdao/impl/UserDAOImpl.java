@@ -15,18 +15,18 @@ public class UserDAOImpl implements UserDao {
    @Resource
     private JdbcTemplate template;
 
-   @SuppressWarnings({"unchecked", "rawtypes"})
+   //@SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public User queryAccount(String account) {
-       System.out.println("this is queryAccount"+"  "+ account);
                User user = (User)this.template.queryForObject(
-                       "SELECT account, password FROM user WHERE account=?",
+                       "SELECT account, password, username FROM user WHERE account=?",
                        new Object[]{account},
                        new RowMapper() {
                            public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
                                User user = new User();
                                user.setAccount(rs.getString("account"));
                                user.setPassword(rs.getString("password"));
+                               user.setUsername(rs.getString("username"));
                                return user;
                            }
                        });
@@ -35,11 +35,16 @@ public class UserDAOImpl implements UserDao {
 
     @Override
     public User queryUsername(String username) {
-        return null;
+
+
+
+       return null;
     }
 
-    @Override
-    public void insert(String account, String password, String username) {
 
+    @Override
+    public void insert(String username,String account, String password) {
+        this.template.update("insert into user (username, account, password) values (?,?,?)",
+                new Object[]{username, account, password});
     }
 }

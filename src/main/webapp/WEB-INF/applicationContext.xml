@@ -60,7 +60,7 @@
             destroy-method="close"
     >
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1/springmvc?useSSL=false"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1/springmvc?useSSL=false&amp;serverTimezone=GMT%2B8"/>
         <property name="username" value="root"/>
         <property name="password" value="199709"/>
     </bean>

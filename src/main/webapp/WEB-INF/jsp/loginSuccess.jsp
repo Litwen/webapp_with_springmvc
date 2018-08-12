@@ -24,7 +24,7 @@
 <body>
 <center>
     <h1>登陆成功！！！！！！！！！！</h1>
-    <hr>
+    <h1>${msg}欢迎您！</h1>
 </center>
 </body>
 </html>

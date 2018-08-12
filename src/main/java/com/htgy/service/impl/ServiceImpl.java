@@ -20,9 +20,15 @@ public class ServiceImpl implements ServiceInterface {
 
     public HashMap<String, Object> dealNull(){
         HashMap<String, Object> hashMap = new HashMap<>();
-        List<String> list = new ArrayList<>();
-        list.add("账户或者密码不能为空");
-        hashMap.put("msg", list);
+        String msg = "账户或者密码不能为空";
+        hashMap.put("msg", msg);
+        return hashMap;
+    }
+
+    public HashMap<String, Object> dealRegistNull(){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = "请填写完整的信息";
+        hashMap.put("msg", msg);
         return hashMap;
     }
 
@@ -35,6 +41,26 @@ public class ServiceImpl implements ServiceInterface {
         return hashMap;
     }
 
+    public HashMap<String, Object> registError(){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = "账户已存在";
+        hashMap.put("msg", msg);
+        return hashMap;
+    }
+
+    public HashMap<String, Object> registPassWordError(){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = "两次密码输入不一致";
+        hashMap.put("msg", msg);
+        return hashMap;
+    }
+
+    public HashMap<String, Object> unkonwError(){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = "抱歉！发生未知错误";
+        hashMap.put("msg", msg);
+        return hashMap;
+    }
     //登录成功
     public  HashMap<String, Object> loginSuccess(){
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -44,11 +70,32 @@ public class ServiceImpl implements ServiceInterface {
         return hashMap;
     }
 
+    public HashMap<String, Object> registSuccess(){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = "登录成功";
+        hashMap.put("msg", msg);
+        return hashMap;
+    }
+
+    public HashMap<String, Object> getLoginUsername(String account){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        String msg = null;
+        try {
+            User user = dao.queryAccount(account);
+            msg = user.getUsername();
+            hashMap.put("msg", msg);
+            return hashMap;
+        }catch (Exception e){
+            hashMap.put("msg", msg);
+            return hashMap;
+        }
+    }
+
+
+
     public boolean doquery(String account, String password){
         try{
-            System.out.println("this is doquery");
             User user = dao.queryAccount(account);
-            System.out.println(user.getAccount()+"  "+user.getPassword());
             if(user.getAccount().equals(account)&&user.getPassword().equals(password)){
                 return true;
             }
@@ -58,6 +105,24 @@ public class ServiceImpl implements ServiceInterface {
         }catch(Exception e){
             return false;
         }
+    }
+
+
+
+    public boolean checkExist(String account){
+        try {
+            User user = dao.queryAccount(account);
+            if (user.getAccount().equals(account)){
+                return true;
+            }else return false;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public void insert(String username, String account, String password){
+        dao.insert(username, account, password);
+
     }
 
 }

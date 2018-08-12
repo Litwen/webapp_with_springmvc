@@ -26,6 +26,7 @@
     注册失败<br>
     <a href="toRegist">继续注册</a>
     <a href="toLogin">返回登录界面</a>
+    <h1>${msg}</h1>
 </center>
 </body>
 </html>

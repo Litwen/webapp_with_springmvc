@@ -2,11 +2,20 @@ package com.htgy.registform;
 
 public class RegistForm {
     private String account;
+    private String username;
     private String passFirst;
     private String passSecond;
 
     public String getAccount() {
         return account;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setAccount(String account) {

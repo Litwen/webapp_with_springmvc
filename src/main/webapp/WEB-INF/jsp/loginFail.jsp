@@ -25,5 +25,10 @@
 <center>
     登录失败<a href="toLogin">返回登录界面</a>
 </center>
+<center>
+    <h1>${msg}</h1>
+</center>
 </body>
 </html>
+
+
